@@ -467,6 +467,7 @@ MonoBehaviour:
   SeperationWeight: 1
   AlignmentWeight: 1
   buildingP: {fileID: 19837254, guid: 79119af665e78f642aef9f1a48521389, type: 2}
+  buildTimer: {fileID: 11474922, guid: 17bbdc4747fc7154492d35f91aa118a9, type: 2}
 --- !u!4 &88376218
 Transform:
   m_ObjectHideFlags: 0
@@ -4979,8 +4980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0a78e282c79af41a8e022a65f3d0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  building: {fileID: 120358, guid: c75877be125746240b4149691ffa4e3b, type: 2}
-  ground: {fileID: 0}
 --- !u!1 &1736339970
 GameObject:
   m_ObjectHideFlags: 0
