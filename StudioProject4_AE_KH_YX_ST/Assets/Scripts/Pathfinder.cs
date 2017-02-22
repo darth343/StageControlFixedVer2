@@ -202,7 +202,7 @@ public class Pathfinder : MonoBehaviour
                 }
             }
         }
-        Grid tempGrid = SceneData.sceneData.gridmesh.gridmesh[posX, posY].GetComponent<Grid>();
+        //Grid tempGrid = SceneData.sceneData.gridmesh.gridmesh[posX, posY].GetComponent<Grid>();
         //tempGrid.GetComponent<Grid>().ChangeState(Grid.GRID_STATE.INOPENLIST);
         OpenList.Add(newNode);
     }
@@ -228,7 +228,7 @@ public class Pathfinder : MonoBehaviour
         if (nextnode != null)
         {
             OpenList.Remove(nextnode);
-            Grid tempGrid = SceneData.sceneData.gridmesh.gridmesh[nextnode.posX, nextnode.posY].GetComponent<Grid>();
+            //Grid tempGrid = SceneData.sceneData.gridmesh.gridmesh[nextnode.posX, nextnode.posY].GetComponent<Grid>();
             //tempGrid.GetComponent<Grid>().ChangeState(Grid.GRID_STATE.INCLOSELIST);
             VisitedList.Add(nextnode);
         }
