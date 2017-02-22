@@ -46,7 +46,6 @@ public class GridArray : MonoBehaviour
         float offset = (size - 1f);
         Vector3 maxpos = new Vector3(position.x + (GridSizeX *0.5f) * offset, position.y, position.z + (GridSizeZ * 0.5f) * offset);
         GameObject max = GetGridAtPosition(maxpos);
-        int a = 0;
         Vector3 snaplocation = max.GetComponent<Grid>().GetWorldPosition();
         snaplocation.z -= (GridSizeZ*0.5f) * offset;
         snaplocation.x -= (GridSizeX*0.5f) * offset;
@@ -135,20 +134,6 @@ public class GridArray : MonoBehaviour
         int index_maxx = (int)(maxpos.x - GridSizeX * 0.5f) / GridSizeX;
         int index_maxz = (int)(maxpos.z - GridSizeZ * 0.5f) / GridSizeZ;
 
-        //gridmesh[index_x, index_z].GetComponent<Grid>().ChangeState(Grid.GRID_STATE.UNAVAILABLE);
-        //gridmesh[index_minx + 1, index_minz + 1].GetComponent<Grid>().ChangeState(Grid.GRID_STATE.UNAVAILABLE);
-        //gridmesh[index_maxx, index_maxz].GetComponent<Grid>().ChangeState(Grid.GRID_STATE.UNAVAILABLE);
-
-        int diffX = index_maxx - (index_minx + 1);
-        int diffZ = index_maxz - (index_minz + 1);
-        //for (int i = index_minx + 1; i < index_minx + diffX; ++i)
-        //{
-        //    Debug.Log("Why you work?!");
-        //    for (int j = index_minz + 1; j < index_minz + diffZ; ++j)
-        //    {
-        //        gridmesh[index_minx + i, index_minz + j].GetComponent<Grid>().ChangeState(Grid.GRID_STATE.UNAVAILABLE);
-        //    }
-        //}
         for (int i = index_minx + 1; i >= index_maxx; --i)
         {
             for (int j = index_minz + 1; j >= index_maxz; --j)
@@ -157,16 +142,6 @@ public class GridArray : MonoBehaviour
                 gridmesh[i, j].GetComponent<Grid>().ChangeState(Grid.GRID_STATE.UNAVAILABLE);
                 gridmesh[i, j].GetComponent<Renderer>().enabled = true;
             }
-        }
-
-        if (index_x < 0 || index_x >= 50)
-        {
-            int a = 0;
-        }
-
-        if (index_z < 0 || index_z >= 50)
-        {
-            int a = 0;
         }
 
         if (index_x >= 0 && index_x <= m_rows &&
@@ -304,7 +279,6 @@ public class GridArray : MonoBehaviour
                 grid.GetComponent<LineRenderer>().SetVertexCount(5);
                 grid.GetComponent<LineRenderer>().SetPositions(grid.GetComponent<Grid>().Points);
                 grid.GetComponent<LineRenderer>().SetWidth(3, 3);
-                grid.GetComponent<LineRenderer>().material.color = Color.green;
                 grid.transform.SetParent(gameObject.transform);
                 gridmesh[x, z] = grid;
 

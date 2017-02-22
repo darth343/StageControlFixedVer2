@@ -28,11 +28,9 @@ public class UnitCards : MonoBehaviour {
     public Text timeText;
     public Text cardDescription;
     public CARD_TYPE cardType;
-    float w,h;
+
 	// Use this for initialization
 	void Start () {
-        w = GetComponent<RectTransform>().rect.width;
-        h = GetComponent<RectTransform>().rect.height;
         SetText();
         //take this out tlater
         GOModel.SetActive(false);
