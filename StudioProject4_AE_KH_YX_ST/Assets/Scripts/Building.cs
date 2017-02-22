@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Building : MonoBehaviour {
     //base class for all buildings
@@ -18,6 +19,7 @@ public class Building : MonoBehaviour {
     public bool isfriendly;
     float timerB = 0.0f;
     ParticleSystem buildingTemp = null;
+    Image buildTimerTemp = null;
     public float buildTimer;
 	// Use this for initialization
 	void Start () {
@@ -30,7 +32,11 @@ public class Building : MonoBehaviour {
     void InstantiateParticles()
     {
         buildingTemp = Instantiate(SceneData.sceneData.buildingP);
+        buildTimerTemp = Instantiate(SceneData.sceneData.buildTimer);
+        buildTimerTemp.transform.SetParent(SceneData.sceneData.UI.transform);
+        buildTimerTemp.enabled = false;    
     }
+    
 
     Vector3 GetMaxPosOfBuilding(Vector3 position, int othersize)
     {
@@ -59,6 +65,8 @@ public class Building : MonoBehaviour {
                         {
                             buildingTemp.Play();
                             buildingTemp.transform.position = gameObject.transform.position;
+                            buildTimerTemp.fillAmount -= 1.0f / buildTimer * Time.deltaTime;
+                            buildTimerTemp.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
                             for (int i = 0; i < gameObject.transform.GetChild(0).childCount; ++i)
                             {
                                 gameObject.transform.GetChild(0).transform.GetChild(i).GetComponent<MeshRenderer>().material = holo;
@@ -101,7 +109,6 @@ public class Building : MonoBehaviour {
     public void SetBuilding()
     {
         b_state = BUILDSTATE.B_CONSTRUCT;
-
-
+        buildTimerTemp.enabled = true;  
     }
 }
