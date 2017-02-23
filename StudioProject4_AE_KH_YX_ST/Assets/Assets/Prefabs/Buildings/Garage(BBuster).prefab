@@ -46,6 +46,8 @@ GameObject:
   - 4: {fileID: 457454}
   - 114: {fileID: 11402378}
   - 114: {fileID: 11482714}
+  - 114: {fileID: 11477532}
+  - 114: {fileID: 11438532}
   m_Layer: 0
   m_Name: Garage(BBuster)
   m_TagString: Untagged
@@ -534,13 +536,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442db459fc7ae5b44979a8d6b3662592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_secondsToSpawn: 10
+  m_secondsToSpawn: 40
   m_entity: {fileID: 106502, guid: 6f889c45066575344b892cf0e5aedeb3, type: 2}
   m_orientationX: right
   m_orientationZ: up
   m_offsetGridX: 9
   m_offsetGridZ: 5
   m_spawnAmt: 1
+  m_spawnLimit: 2
+  m_tempList: []
 --- !u!114 &11406754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -583,6 +587,20 @@ MonoBehaviour:
   matIndex: 0
   AnimRate: {x: 1, y: 2}
   texturename: _MainTex
+--- !u!114 &11438532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40267e5f492df3c48b43d664f357a59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PathFound: 0
+  PathToEnd: []
+  EndPos: {x: 0, y: 0, z: 0}
 --- !u!114 &11440404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -625,6 +643,18 @@ MonoBehaviour:
   matIndex: 0
   AnimRate: {x: 1, y: 2}
   texturename: _MainTex
+--- !u!114 &11477532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21fd192da9648e4cb6e24850765ff21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_HEALTH: 100
 --- !u!114 &11482714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -643,8 +673,9 @@ MonoBehaviour:
   undamaged: {fileID: 2100000, guid: 9241aa8f6241bfb43b0f319bc06f291b, type: 2}
   damaged: {fileID: 2100000, guid: 9241aa8f6241bfb43b0f319bc06f291b, type: 2}
   b_state: 0
-  isfriendly: 0
-  buildTimer: 10
+  isfriendly: 1
+  m_isDistract: 0
+  buildTimer: 50
 --- !u!114 &11487650
 MonoBehaviour:
   m_ObjectHideFlags: 1

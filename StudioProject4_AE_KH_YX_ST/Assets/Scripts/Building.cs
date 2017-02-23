@@ -139,11 +139,11 @@ public class Building : MonoBehaviour
 
                 if (!m_isDistract)
                 {
-                    if (isfriendly && GetComponent<Pathfinder>())
+                    if (isfriendly && GetComponent<Pathfinder>() && LevelManager.instance.EnemyBase)
                     {
                         GetComponent<Pathfinder>().FindPath(GetMaxPosOfBuilding(LevelManager.instance.EnemyBase.transform.position, LevelManager.instance.EnemyBase.GetComponent<Building>().size));
                     }
-                    else if (!isfriendly && GetComponent<Pathfinder>())
+                    else if (!isfriendly && GetComponent<Pathfinder>() && LevelManager.instance.PlayerBase)
                     {
                         GetComponent<Pathfinder>().FindPath(GetMaxPosOfBuilding(LevelManager.instance.PlayerBase.transform.position, LevelManager.instance.PlayerBase.GetComponent<Building>().size));
                     }
