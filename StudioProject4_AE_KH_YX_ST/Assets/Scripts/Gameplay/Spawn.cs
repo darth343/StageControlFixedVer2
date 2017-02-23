@@ -21,14 +21,20 @@ public class Spawn : MonoBehaviour
     public int m_offsetGridZ;
     // How many to spawn in a flock
     public int m_spawnAmt;
+    public int m_spawnLimit;
     private int m_originalAmt;
+    private int m_currAmt;
     // All the spawned entities are put into this list
     public static List<GameObject> m_entityList;
     // The building of the spawner
     private Building m_building;
+    public List<GameObject> m_tempList; // Stores only entities spawned by this building
+    public static int m_team1MAX = 50; // Max entities team 1 can have inside scene
+    public static int m_team2MAX = 50; // Max entities team 1 can have inside scene
 
     void Start()
     {
+        m_tempList = new List<GameObject>();
         m_timer = this.gameObject.AddComponent<Timer>();
         m_timer.Init(0, m_secondsToSpawn, 0);
         m_building = GetComponent<Building>();
@@ -45,18 +51,23 @@ public class Spawn : MonoBehaviour
             SceneData.sceneData.EntityList = m_controller;
         }
         m_originalAmt = m_spawnAmt;
+        if (m_spawnLimit < m_spawnAmt)
+            m_spawnLimit = m_spawnAmt + m_spawnLimit;
+        m_currAmt = 0;
         //temp.worldCamera = 
         //SharedData.instance.gridmesh.GetOccupiedGrids(transform.position, transform.localScale);
     }
 
     void Update()
     {
-        if (m_entityList.Count > 10)
+        if (m_building.isfriendly && m_entityList.Count > m_team1MAX)
+            return;
+        if (!m_building.isfriendly && m_entityList.Count > m_team2MAX)
             return;
         if (m_building.b_state == Building.BUILDSTATE.B_ACTIVE)
             m_timer.Update();
         //SharedData.instance.gridmesh.RenderBuildGrids(transform.position, transform.localScale);
-        if (m_timer.can_run && m_spawnAmt > 0 && m_entityList.Count < Building.MAX_UNIT && GetComponent<Pathfinder>().PathFound)
+        if (m_timer.can_run && m_spawnAmt > 0 && m_entityList.Count < Building.MAX_UNIT && GetComponent<Pathfinder>().PathFound && m_currAmt < m_spawnLimit)
         {
             GameObject spawn;
             for (int i = 0; i < m_spawnAmt; ++i)
@@ -66,6 +77,7 @@ public class Spawn : MonoBehaviour
                 spawn.GetComponent<Health>().MAX_HEALTH = 100;
                 spawn.GetComponent<Unit>().SetPath(GetComponent<Pathfinder>().PathToEnd);
                 spawn.GetComponent<Unit>().m_building = GetComponent<Building>();
+                ++m_currAmt;
                 GameObject handle, handleChild;
                 handle = new GameObject();
                 handleChild = new GameObject();
@@ -109,8 +121,14 @@ public class Spawn : MonoBehaviour
                 if (m_building.isfriendly)
                     spawn.GetComponent<Unit>().m_isFriendly = true;
                 m_entityList.Add(spawn);
+                m_tempList.Add(spawn);
             }
             m_timer.Reset();
+
+            if (m_entityList.Count < m_spawnLimit && m_currAmt > m_spawnLimit)
+            {
+                m_currAmt = 0;
+            }
             //if (m_entityList.Count > 10)
             //{
             //    m_spawnAmt = 0;

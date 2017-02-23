@@ -223,6 +223,8 @@ GameObject:
   - 114: {fileID: 11459104}
   - 114: {fileID: 11464362}
   - 114: {fileID: 11434482}
+  - 114: {fileID: 11485962}
+  - 114: {fileID: 11457454}
   m_Layer: 0
   m_Name: RailgunUnit
   m_TagString: Untagged
@@ -857,7 +859,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9410bef31ae534f8061d7e8ed6ff4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 115758}
+  m_attkRadius: 7
+  m_attkDamage: 0
+  m_attkAnim: {fileID: 7400000, guid: e49998e06cf2d414d942fb12b2582da9, type: 3}
+  PathToEnd: []
+  pathindex: 0
+  m_isFriendly: 0
+  m_building: {fileID: 0}
+--- !u!114 &11457454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df341e5855f818b4d9386618a03803c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NeighborRadius: 50
+  SeperationOffset: 800
+  FlockingList: []
+  leader: {fileID: 0}
+  isleader: 1
 --- !u!114 &11459104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -881,7 +905,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d49d1418f81a0a4fa1b07cf8de5ae69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_childIndex: 0
+--- !u!114 &11485962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a6bd85ac2760b458a66598123fd8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Velocity: {x: 0, y: 0, z: 0}
+  speed: 5
+  m_stopMove: 0
+  m_stopMove2: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

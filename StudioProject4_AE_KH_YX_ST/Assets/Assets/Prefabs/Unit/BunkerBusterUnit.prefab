@@ -28,6 +28,8 @@ GameObject:
   - 114: {fileID: 11416170}
   - 114: {fileID: 11429682}
   - 114: {fileID: 11495830}
+  - 114: {fileID: 11406480}
+  - 114: {fileID: 11487446}
   m_Layer: 0
   m_Name: BunkerBusterUnit
   m_TagString: Untagged
@@ -769,6 +771,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11406480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a6bd85ac2760b458a66598123fd8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Velocity: {x: 0, y: 0, z: 0}
+  speed: 5
+  m_stopMove: 0
+  m_stopMove2: 0
 --- !u!114 &11416170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -792,7 +809,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d49d1418f81a0a4fa1b07cf8de5ae69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_childIndex: 0
+--- !u!114 &11487446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df341e5855f818b4d9386618a03803c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NeighborRadius: 50
+  SeperationOffset: 800
+  FlockingList: []
+  leader: {fileID: 0}
+  isleader: 1
 --- !u!114 &11495830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -804,7 +836,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9410bef31ae534f8061d7e8ed6ff4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 198978}
+  m_attkRadius: 5
+  m_attkDamage: 100
+  m_attkAnim: {fileID: 7400000, guid: b7d66c276d557ed448261b32ace38865, type: 3}
+  PathToEnd: []
+  pathindex: 0
+  m_isFriendly: 0
+  m_building: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

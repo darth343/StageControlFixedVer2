@@ -16,7 +16,7 @@ public class Deck : MonoBehaviour
     public List<Deck_Detail> CardsToInclude = null;
     public List<GameObject> Cards;
     public HandHandler handHandler;
-    bool drawable = true;
+    bool drawable = true, a_draw = true;
 
     // Use this for initialization
     void Start()
@@ -55,6 +55,16 @@ public class Deck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Animator draw = gameObject.transform.GetChild(0).GetComponent<Animator>();
+        if (draw.GetCurrentAnimatorStateInfo(0).IsName("Draw") && draw.GetCurrentAnimatorStateInfo(0).length >
+          draw.GetCurrentAnimatorStateInfo(0).normalizedTime && !a_draw)//draw the card after animation
+        {
+            draw.SetBool("Isdraw", false);
+            a_draw = true;
+            addcard();
+        
+        }
+      
 
     }
 
@@ -75,22 +85,26 @@ public class Deck : MonoBehaviour
     public void DrawCard()
     {
         
+        // GameObject drawcard = gameObject.transform.GetChild(0).GetComponent<GameObject>();
+        Animator draw = gameObject.transform.GetChild(0).GetComponent<Animator>();
         if (Cards.Count <= 30 && Cards.Count > 0 && drawable == true)
         {
-            GameObject firstCard = Cards.ElementAt(0);
-            if (SceneData.sceneData.handhandler.handsize < 5)
+
+            if (SceneData.sceneData.handhandler.handsize < 5 && a_draw) //&& draw.GetCurrentAnimatorStateInfo(0).IsName("Idle"))//can draw here
             {
-                SceneData.sceneData.handhandler.cardlist.Add(firstCard);
-                SceneData.sceneData.handhandler.ResetCardPos();
-                firstCard.GetComponent<UnitCards>().GenerateBuilding();
-                Cards.Remove(firstCard);
+                //gameObject.transform.GetChild(0).GetComponent<Animation>().
+
+                draw.SetBool("Isdraw", true);
+                a_draw = false;
             }
         }
-        
+
         else if (Cards.Count <= 0)
         {
-            if (SceneData.sceneData.handhandler.handsize < 5 && drawable == false)
+            if (SceneData.sceneData.handhandler.handsize < 5 && drawable == false && a_draw)
             {
+                draw.SetBool("Isdraw", true);
+                a_draw = false;
                 GameObject NewDeckCard = GameObject.Find("NewDeckCard");
                 SceneData.sceneData.handhandler.cardlist.Add(NewDeckCard);
                 SceneData.sceneData.handhandler.ResetCardPos();
@@ -98,4 +112,18 @@ public class Deck : MonoBehaviour
             }
         }
     }
+
+
+    void addcard()
+    {
+        GameObject firstCard = Cards.ElementAt(0);
+        SceneData.sceneData.handhandler.cardlist.Add(firstCard);
+        SceneData.sceneData.handhandler.ResetCardPos();
+        firstCard.GetComponent<UnitCards>().GenerateBuilding();
+        Cards.Remove(firstCard);
+        return;
+     }
+   
+
+    
 }

@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: {x: 0, y: 0, z: 0}
-  speed: 5
+  speed: 10
   m_stopMove: 0
   m_stopMove2: 0
 --- !u!114 &11426098
@@ -419,7 +419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21fd192da9648e4cb6e24850765ff21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 0
   MAX_HEALTH: 100
 --- !u!114 &11448706
 MonoBehaviour:
@@ -461,6 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_attkRadius: 4
   m_attkDamage: 20
+  m_attkAnim: {fileID: 7400000, guid: daeb56936fdbaf24e872e4b1bf4cebf9, type: 3}
   PathToEnd: []
   pathindex: 0
   m_isFriendly: 0
