@@ -49,6 +49,7 @@ public class GridArray : MonoBehaviour
         Vector3 snaplocation = max.GetComponent<Grid>().GetWorldPosition();
         snaplocation.z -= (GridSizeZ*0.5f) * offset;
         snaplocation.x -= (GridSizeX*0.5f) * offset;
+        snaplocation.y = SceneData.sceneData.ground.SampleHeight(snaplocation);
         RenderBuildGrids(max, size);
        
         //max.GetComponent<Grid>().ChangeState(Grid.GRID_STATE.UNAVAILABLE);   
