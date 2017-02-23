@@ -16,6 +16,7 @@ public class Deck : MonoBehaviour
     public List<Deck_Detail> CardsToInclude = null;
     public List<GameObject> Cards;
     public HandHandler handHandler;
+    bool drawable = true;
 
     // Use this for initialization
     void Start()
@@ -74,7 +75,7 @@ public class Deck : MonoBehaviour
     public void DrawCard()
     {
         
-        if (Cards.Count <= 30 && Cards.Count > 0)
+        if (Cards.Count <= 30 && Cards.Count > 0 && drawable == true)
         {
             GameObject firstCard = Cards.ElementAt(0);
             if (SceneData.sceneData.handhandler.handsize < 5)
@@ -88,11 +89,12 @@ public class Deck : MonoBehaviour
         
         else if (Cards.Count <= 0)
         {
-            if (SceneData.sceneData.handhandler.handsize < 5)
+            if (SceneData.sceneData.handhandler.handsize < 5 && drawable == false)
             {
                 GameObject NewDeckCard = GameObject.Find("NewDeckCard");
                 SceneData.sceneData.handhandler.cardlist.Add(NewDeckCard);
                 SceneData.sceneData.handhandler.ResetCardPos();
+                drawable = false;
             }
         }
     }

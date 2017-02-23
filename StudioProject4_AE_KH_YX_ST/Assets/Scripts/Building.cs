@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 
+
 public class Building : MonoBehaviour
 {
     //base class for all buildings
@@ -23,6 +24,7 @@ public class Building : MonoBehaviour
     public bool m_isDistract;
     float timerB = 0.0f;
     ParticleSystem buildingTemp = null;
+    Image buildTimerTemp = null;
     public float buildTimer;
     private static GameObject m_buildingControl;
     private static bool m_initController = true;
@@ -72,7 +74,11 @@ public class Building : MonoBehaviour
     void InstantiateParticles()
     {
         buildingTemp = Instantiate(SceneData.sceneData.buildingP);
+        buildTimerTemp = Instantiate(SceneData.sceneData.buildTimer);
+        buildTimerTemp.transform.SetParent(SceneData.sceneData.UI.transform);
+        buildTimerTemp.enabled = false;    
     }
+    
 
     public Vector3 GetMaxPosOfBuilding(Vector3 position, int othersize)
     {
@@ -102,6 +108,8 @@ public class Building : MonoBehaviour
                     {
                         buildingTemp.Play();
                         buildingTemp.transform.position = gameObject.transform.position;
+                        buildTimerTemp.fillAmount -= 1.0f / buildTimer * Time.deltaTime;
+                        buildTimerTemp.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
                         for (int i = 0; i < gameObject.transform.GetChild(0).childCount; ++i)
                         {
                             gameObject.transform.GetChild(0).transform.GetChild(i).GetComponent<MeshRenderer>().material = holo;
@@ -164,5 +172,6 @@ public class Building : MonoBehaviour
     public void SetBuilding()
     {
         b_state = BUILDSTATE.B_CONSTRUCT;
+        buildTimerTemp.enabled = true;  
     }
 }

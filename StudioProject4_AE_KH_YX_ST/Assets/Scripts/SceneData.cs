@@ -30,6 +30,8 @@ public class SceneData : MonoBehaviour
     //Particles
     public ParticleSystem buildingP;
 
+    public Image buildTimer;
+
     void SnapBasesToGrid()
     {
         if (LevelManager.instance)
