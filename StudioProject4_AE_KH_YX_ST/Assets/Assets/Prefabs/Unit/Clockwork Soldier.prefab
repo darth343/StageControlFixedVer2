@@ -11,6 +11,8 @@ GameObject:
   - 114: {fileID: 11497088}
   - 114: {fileID: 11423402}
   - 114: {fileID: 11434802}
+  - 114: {fileID: 11408558}
+  - 114: {fileID: 11409452}
   m_Layer: 0
   m_Name: Clockwork Soldier
   m_TagString: Untagged
@@ -454,6 +456,37 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11408558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a6bd85ac2760b458a66598123fd8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Velocity: {x: 0, y: 0, z: 0}
+  speed: 15
+  m_stopMove: 0
+  m_stopMove2: 0
+--- !u!114 &11409452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df341e5855f818b4d9386618a03803c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NeighborRadius: 50
+  SeperationOffset: 800
+  FlockingList: []
+  leader: {fileID: 0}
+  isleader: 1
 --- !u!114 &11423402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -477,6 +510,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_attkRadius: 1
+  m_attkDamage: 10
+  m_attkAnim: {fileID: 7400000, guid: 6833b506f6030d1498557d7e0c7d89c0, type: 3}
+  PathToEnd: []
+  pathindex: 0
+  m_isFriendly: 0
+  m_building: {fileID: 0}
 --- !u!114 &11497088
 MonoBehaviour:
   m_ObjectHideFlags: 1

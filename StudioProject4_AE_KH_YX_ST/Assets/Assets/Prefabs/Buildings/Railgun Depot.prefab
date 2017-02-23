@@ -188,6 +188,8 @@ GameObject:
   - 4: {fileID: 451860}
   - 114: {fileID: 11473168}
   - 114: {fileID: 11414214}
+  - 114: {fileID: 11498164}
+  - 114: {fileID: 11469010}
   m_Layer: 0
   m_Name: Railgun Depot
   m_TagString: Untagged
@@ -725,8 +727,9 @@ MonoBehaviour:
   undamaged: {fileID: 2100000, guid: 9241aa8f6241bfb43b0f319bc06f291b, type: 2}
   damaged: {fileID: 2100000, guid: 9241aa8f6241bfb43b0f319bc06f291b, type: 2}
   b_state: 0
-  isfriendly: 0
-  buildTimer: 10
+  isfriendly: 1
+  m_isDistract: 0
+  buildTimer: 50
 --- !u!114 &11418414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -769,6 +772,20 @@ MonoBehaviour:
   matIndex: 0
   AnimRate: {x: 1, y: 2}
   texturename: _MainTex
+--- !u!114 &11469010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40267e5f492df3c48b43d664f357a59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PathFound: 0
+  PathToEnd: []
+  EndPos: {x: 0, y: 0, z: 0}
 --- !u!114 &11473168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -780,13 +797,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442db459fc7ae5b44979a8d6b3662592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_secondsToSpawn: 10
+  m_secondsToSpawn: 50
   m_entity: {fileID: 189996, guid: 51957ef316cfadd45933972b910dd29b, type: 2}
   m_orientationX: right
   m_orientationZ: up
   m_offsetGridX: 9
   m_offsetGridZ: 5
   m_spawnAmt: 1
+  m_spawnLimit: 3
+  m_tempList: []
 --- !u!114 &11475624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -801,6 +820,18 @@ MonoBehaviour:
   matIndex: 0
   AnimRate: {x: 1, y: 2}
   texturename: _MainTex
+--- !u!114 &11498164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21fd192da9648e4cb6e24850765ff21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_HEALTH: 100
 --- !u!114 &11498722
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -28,7 +28,7 @@ public class Unit : MonoBehaviour {
     private Vector2 m_oldGrid; // The grid the unit was standing on in the previous frame
     private Animator m_animator; // The animator of this model
     private bool m_switchAnimation; // Prevents the turning off of attack animation from running too many times  
-    private AnimationClip m_attkAnim; // The attack animation
+    public AnimationClip m_attkAnim; // The attack animation
     private Timer m_timer;
     public static Component[] m_destroyerOfWorlds; // Stores and destroys all the components of an object
     public List<Vector3> PathToEnd = null;
@@ -73,7 +73,9 @@ public class Unit : MonoBehaviour {
         m_attkDist = (furthestPoint - transform.position).sqrMagnitude; // sqrmagnitude is less expensive since we are just doing distance checks
         m_animator = transform.GetChild(0).GetComponent<Animator>();
         m_switchAnimation = false;
-        m_attkAnim = GetAnimationClipFromAnimatorByName(m_animator, "Attack");
+        AnimationClip clip = GetAnimationClipFromAnimatorByName(m_animator, "Attack");
+        if (clip)
+            m_attkAnim = clip;
         m_timer = this.gameObject.AddComponent<Timer>();
         //m_timer.Init(0, m_attkAnim.length * 2, m_attkAnim.length * 2);
         m_timer.Init(0, m_attkAnim.length * 2, 7);
@@ -169,7 +171,6 @@ public class Unit : MonoBehaviour {
                 GetComponent<VMovement>().Velocity = (PathToEnd[pathindex] - transform.position).normalized;
                 if ((PathToEnd[pathindex] - transform.position).sqrMagnitude < GetComponent<VMovement>().speed * GetComponent<VMovement>().speed)
                 {
-                    Debug.Log(pathindex);
                     --pathindex;
                     if (pathindex <= 0)
                     {
@@ -208,7 +209,7 @@ public class Unit : MonoBehaviour {
             m_targetBuilding = null;
             GetComponent<VMovement>().m_stopMove2 = false;
         }
-        else if (m_targetBuilding != null)
+        else if (m_targetBuilding != null && m_building)
         {
             m_building.m_isDistract = true;
             m_building.GetComponent<Pathfinder>().FindPath(m_building.GetMaxPosOfBuilding(m_targetBuilding.transform.position, m_targetBuilding.GetComponent<Building>().size));
@@ -247,7 +248,7 @@ public class Unit : MonoBehaviour {
                 return animator.runtimeAnimatorController.animationClips[i];
         }
 
-        Debug.LogError("Animation clip: " + name + " not found");
+        //Debug.LogError("Animation clip: " + name + " not found");
         return null;
     }
 

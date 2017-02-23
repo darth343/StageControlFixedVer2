@@ -901,13 +901,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442db459fc7ae5b44979a8d6b3662592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_secondsToSpawn: 10
+  m_secondsToSpawn: 20
   m_entity: {fileID: 113746, guid: b08db7a63960641448d6ae419fa64cca, type: 2}
   m_orientationX: right
   m_orientationZ: none
   m_offsetGridX: 5
   m_offsetGridZ: 0
-  m_spawnAmt: 1
+  m_spawnAmt: 2
+  m_spawnLimit: 5
+  m_tempList: []
 --- !u!114 &11419704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -984,7 +986,7 @@ MonoBehaviour:
   b_state: 0
   isfriendly: 1
   m_isDistract: 0
-  buildTimer: 10
+  buildTimer: 40
 --- !u!114 &11448892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1105,7 +1107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21fd192da9648e4cb6e24850765ff21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 0
   MAX_HEALTH: 100
 --- !u!114 &11495026
 MonoBehaviour:

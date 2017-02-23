@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11451898}
   - 114: {fileID: 11458146}
   - 114: {fileID: 11458002}
+  - 114: {fileID: 11492584}
   m_Layer: 0
   m_Name: IronGolemFortress
   m_TagString: Untagged
@@ -605,13 +606,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442db459fc7ae5b44979a8d6b3662592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_secondsToSpawn: 5
+  m_secondsToSpawn: 20
   m_entity: {fileID: 146894, guid: 2345a5f3c6d3f5a4baa1a915062d81be, type: 2}
   m_orientationX: right
   m_orientationZ: none
   m_offsetGridX: 2
   m_offsetGridZ: 0
   m_spawnAmt: 1
+  m_spawnLimit: 4
+  m_tempList: []
 --- !u!114 &11458002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -644,8 +647,9 @@ MonoBehaviour:
   undamaged: {fileID: 2100000, guid: 9241aa8f6241bfb43b0f319bc06f291b, type: 2}
   damaged: {fileID: 0}
   b_state: 0
-  isfriendly: 0
-  buildTimer: 10
+  isfriendly: 1
+  m_isDistract: 0
+  buildTimer: 30
 --- !u!114 &11466858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -674,6 +678,18 @@ MonoBehaviour:
   matIndex: 0
   AnimRate: {x: 1, y: 2}
   texturename: _MainTex
+--- !u!114 &11492584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21fd192da9648e4cb6e24850765ff21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_HEALTH: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
