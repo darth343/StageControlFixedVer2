@@ -65,6 +65,14 @@ public class Timer : MonoBehaviour
         }
     }
 
+    public float GetRatio()
+    {
+        if (timer == 0)
+            return 1;
+
+        return timer / delay;
+    }
+
     public void Init(float starttime_, float delay_, float period_)
     {
         original_time = starttime_;

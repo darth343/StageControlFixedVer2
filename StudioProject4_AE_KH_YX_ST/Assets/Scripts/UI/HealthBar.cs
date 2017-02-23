@@ -10,6 +10,7 @@ public class HealthBar : MonoBehaviour {
     private Image m_hp_fg; // The foreground of the healthbar
     private Health m_playerHealth; // Player current health object
     private float fg_width;
+
     //private float bg_width;
     public static int m_childIndex = 0; // Index starting from 0 of which UI component to access from parent
     // Use this for initialization

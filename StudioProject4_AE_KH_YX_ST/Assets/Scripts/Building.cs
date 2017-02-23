@@ -25,6 +25,7 @@ public class Building : MonoBehaviour
     float timerB = 0.0f;
     ParticleSystem buildingTemp = null;
     Image buildTimerTemp = null;
+    Image spawnTimerTemp = null;
     public float buildTimer;
     private static GameObject m_buildingControl;
     private static bool m_initController = true;
@@ -76,7 +77,11 @@ public class Building : MonoBehaviour
         buildingTemp = Instantiate(SceneData.sceneData.buildingP);
         buildTimerTemp = Instantiate(SceneData.sceneData.buildTimer);
         buildTimerTemp.transform.SetParent(SceneData.sceneData.UI.transform);
-        buildTimerTemp.enabled = false;    
+        buildTimerTemp.enabled = false;
+
+        spawnTimerTemp = Instantiate(SceneData.sceneData.spawnTimer);
+        spawnTimerTemp.transform.SetParent(SceneData.sceneData.UI.transform);
+        spawnTimerTemp.enabled = false;
     }
     
 
@@ -132,6 +137,13 @@ public class Building : MonoBehaviour
                 }
                 break;
             case BUILDSTATE.B_ACTIVE:
+                if (GetComponent<Spawn>())
+                {
+                    spawnTimerTemp.enabled = true;
+                    spawnTimerTemp.fillAmount = GetComponent<Spawn>().m_timer.GetRatio();
+                    spawnTimerTemp.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+                }
+                //spawnTimerTemp.fillAmount = 1;
                 for (int i = 0; i < gameObject.transform.GetChild(0).childCount; ++i)
                 {
                     gameObject.transform.GetChild(0).transform.GetChild(i).GetComponent<MeshRenderer>().material = undamaged;

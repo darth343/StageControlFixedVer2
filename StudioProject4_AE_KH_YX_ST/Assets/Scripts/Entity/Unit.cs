@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -42,6 +43,11 @@ public class Unit : MonoBehaviour {
     [HideInInspector]
     public Building m_building; // The building which spawned this unit
 
+    //Kenzo health stuff
+    Image playerHealth;
+    Image enemyHealth;
+    //End of Kenzo Health stuff
+
     public void SetPath(List<Vector3> newPath)
     {
         PathToEnd = newPath;
@@ -50,6 +56,9 @@ public class Unit : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        Invoke("InstantiateStats", 0.1f);
+
         m_currGrid = SceneData.sceneData.gridmesh.GetGridIndexAtPosition(transform.position);
         m_oldGrid = SceneData.sceneData.gridmesh.GetGridIndexAtPosition(transform.position);
 
@@ -84,6 +93,15 @@ public class Unit : MonoBehaviour {
         m_targetList = new List<GameObject>();
         m_targetIndex = 0;
 	}
+
+    void InstantiateStats()
+    {
+        playerHealth = Instantiate(SceneData.sceneData.friendlyHealth);
+        playerHealth.transform.SetParent(SceneData.sceneData.UI.transform);
+
+        enemyHealth = Instantiate(SceneData.sceneData.enemyHealth);
+        enemyHealth.transform.SetParent(SceneData.sceneData.UI.transform);
+    }
 	
 	// Update is called once per frame
     void FixedUpdate()
@@ -93,6 +111,20 @@ public class Unit : MonoBehaviour {
         // PUT ATTACK STUFF IN A FUNCTION INSTEAD OF FLOODING UPDATE
         //
         //
+        //Kenzo Health stuff
+        //if (m_isFriendly == true)
+        //{
+        //    playerHealth.fillAmount -= 1.0f / 10.0f * Time.deltaTime;
+        //    playerHealth.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        //}
+            
+        //else
+        //{
+        //    enemyHealth.fillAmount -= 1.0f / 10.0f * Time.deltaTime;
+        //    enemyHealth.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        //}
+
+        //End of Health stuff
 
         // if current grid unit is standing on is not the old one, meaning he has moved
         m_currGrid = SceneData.sceneData.gridmesh.GetGridIndexAtPosition(transform.position); // Get unit's current grid

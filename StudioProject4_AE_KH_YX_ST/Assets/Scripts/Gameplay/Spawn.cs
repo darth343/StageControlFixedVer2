@@ -7,7 +7,7 @@ public class Spawn : MonoBehaviour
 {
     // How many seconds before next spawn
     public float m_secondsToSpawn;
-    private Timer m_timer;
+    public Timer m_timer;
     // The controller that the spawned entity belongs to like EnemyController
     private static GameObject m_controller;
     private static bool m_initController = false;

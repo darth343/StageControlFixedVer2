@@ -27,10 +27,15 @@ public class SceneData : MonoBehaviour
     public float AlignmentWeight = 1f;
 
 
+    //Health stuff
+    public Image friendlyHealth;
+    public Image enemyHealth;
+
     //Particles
     public ParticleSystem buildingP;
 
     public Image buildTimer;
+    public Image spawnTimer;
 
     void SnapBasesToGrid()
     {
