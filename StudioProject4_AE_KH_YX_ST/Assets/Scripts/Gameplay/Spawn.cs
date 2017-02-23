@@ -21,6 +21,7 @@ public class Spawn : MonoBehaviour
     public int m_offsetGridZ;
     // How many to spawn in a flock
     public int m_spawnAmt;
+    private int m_originalAmt;
     // All the spawned entities are put into this list
     public static List<GameObject> m_entityList;
     // The building of the spawner
@@ -30,10 +31,10 @@ public class Spawn : MonoBehaviour
     {
         m_timer = this.gameObject.AddComponent<Timer>();
         m_timer.Init(0, m_secondsToSpawn, 0);
-        m_entityList = new List<GameObject>();
         m_building = GetComponent<Building>();
         if (m_initController == false)
         {
+            m_entityList = new List<GameObject>();
             m_controller = new GameObject();
             m_controller.name = "EntityList";
             GameObject temp = new GameObject();
@@ -43,15 +44,19 @@ public class Spawn : MonoBehaviour
             m_initController = true;
             SceneData.sceneData.EntityList = m_controller;
         }
+        m_originalAmt = m_spawnAmt;
         //temp.worldCamera = 
         //SharedData.instance.gridmesh.GetOccupiedGrids(transform.position, transform.localScale);
     }
 
     void Update()
     {
-        m_timer.Update();
+        if (m_entityList.Count > 10)
+            return;
+        if (m_building.b_state == Building.BUILDSTATE.B_ACTIVE)
+            m_timer.Update();
         //SharedData.instance.gridmesh.RenderBuildGrids(transform.position, transform.localScale);
-        if (m_timer.can_run && m_spawnAmt > 0 && m_building.b_state == Building.BUILDSTATE.B_ACTIVE && GetComponent<Pathfinder>().PathFound)
+        if (m_timer.can_run && m_spawnAmt > 0 && m_entityList.Count < Building.MAX_UNIT && GetComponent<Pathfinder>().PathFound)
         {
             GameObject spawn;
             for (int i = 0; i < m_spawnAmt; ++i)
@@ -60,6 +65,7 @@ public class Spawn : MonoBehaviour
                 spawn.transform.SetParent(m_controller.transform);
                 spawn.GetComponent<Health>().MAX_HEALTH = 100;
                 spawn.GetComponent<Unit>().SetPath(GetComponent<Pathfinder>().PathToEnd);
+                spawn.GetComponent<Unit>().m_building = GetComponent<Building>();
                 GameObject handle, handleChild;
                 handle = new GameObject();
                 handleChild = new GameObject();
@@ -100,9 +106,18 @@ public class Spawn : MonoBehaviour
                 Vector3 spawn_pos = SceneData.sceneData.gridmesh.GetPositionAtGrid((int)this_grid.x + m_offsetGridX * orientationX, (int)this_grid.y + m_offsetGridZ * orientationZ); // is actually the grid this object is on's z position + 30, not y
                 spawn_pos.y = SceneData.sceneData.gridmesh.GetTerrainHeightAtGrid(spawn_pos);
                 spawn.transform.position = spawn_pos;
+                if (m_building.isfriendly)
+                    spawn.GetComponent<Unit>().m_isFriendly = true;
                 m_entityList.Add(spawn);
             }
             m_timer.Reset();
+            //if (m_entityList.Count > 10)
+            //{
+            //    m_spawnAmt = 0;
+            //}
+            //else if (m_spawnAmt == 0)
+            //    m_spawnAmt = m_originalAmt;
+
         }
     }
 }

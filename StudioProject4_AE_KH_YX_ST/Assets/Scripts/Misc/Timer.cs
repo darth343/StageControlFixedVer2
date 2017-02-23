@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Timer : MonoBehaviour {
+public class Timer : MonoBehaviour
+{
     private float timer;
+    private float in_timer;
     private float delay; // in seconds
     private float period; // before it executes again
     private float original_time;
     public bool can_run;
     private float new_delay;
+    private bool start_period;
     // Use this for initialization
     public void Start()
     {
         new_delay = -1;
+        start_period = false;
     }
 
     // Update is called once per frame
@@ -21,17 +25,43 @@ public class Timer : MonoBehaviour {
             delay = new_delay;
         if (timer < 0)
             return;
-        if (timer >= period)
+
+        //if (start_period)
+        //{
+        //    can_run = false;
+        //    if (timer < period)
+        //    {
+        //        timer += Time.deltaTime;
+        //    }
+        //    else
+        //    {
+        //        start_period = false;
+        //        timer = original_time;
+        //    }
+        //}
+        if (period > 0)
         {
-            if (timer < delay)
+            if (in_timer < period && start_period)
             {
-                timer += Time.deltaTime;
+                can_run = false;
+                in_timer += Time.deltaTime;
             }
-            else
+            else if (start_period)
             {
-                can_run = true;
-                timer = original_time;
+                start_period = false;
+                in_timer = 0;
             }
+        }
+        if (timer < delay && !start_period)
+        {
+            timer += Time.deltaTime;
+        }
+        else if (!start_period)
+        {
+            can_run = true;
+            timer = original_time;
+            if (period > 0)
+                start_period = true;
         }
     }
 

@@ -37,7 +37,7 @@ public class Flocking : MonoBehaviour
     {
         if (!isleader)
         {
-            if (!leader)
+            if (leader.gameObject == null)
             {
                 isleader = true;
             }

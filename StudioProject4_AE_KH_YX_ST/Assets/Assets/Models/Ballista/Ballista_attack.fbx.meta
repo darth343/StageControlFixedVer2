@@ -32,7 +32,7 @@ ModelImporter:
     4300004: pCube9
     4300006: pCylinder5
     4300008: pCube10
-    7400000: Take 001
+    7400000: Move
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -56,7 +56,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Move
       takeName: Take 001
       firstFrame: 1
       lastFrame: 48

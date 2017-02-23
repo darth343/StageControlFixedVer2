@@ -207,6 +207,8 @@ GameObject:
   - 114: {fileID: 11416994}
   - 114: {fileID: 11447176}
   - 114: {fileID: 11427706}
+  - 114: {fileID: 11488872}
+  - 114: {fileID: 11486728}
   m_Layer: 0
   m_Name: Siege Workshop
   m_TagString: Untagged
@@ -980,7 +982,8 @@ MonoBehaviour:
   undamaged: {fileID: 2100000, guid: 9241aa8f6241bfb43b0f319bc06f291b, type: 2}
   damaged: {fileID: 0}
   b_state: 0
-  isfriendly: 0
+  isfriendly: 1
+  m_isDistract: 0
   buildTimer: 10
 --- !u!114 &11448892
 MonoBehaviour:
@@ -1080,6 +1083,30 @@ MonoBehaviour:
   matIndex: 0
   AnimRate: {x: 1, y: 2}
   texturename: _MainTex
+--- !u!114 &11486728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186884}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d49d1418f81a0a4fa1b07cf8de5ae69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11488872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21fd192da9648e4cb6e24850765ff21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_health: 0
+  MAX_HEALTH: 100
 --- !u!114 &11495026
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Health : MonoBehaviour {
-    private float m_health;
+    public float m_health;
     public float MAX_HEALTH;
     private float m_limiter;
     private bool m_decrease;

@@ -405,7 +405,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: {x: 0, y: 0, z: 0}
-  speed: 10
+  speed: 5
+  m_stopMove: 0
+  m_stopMove2: 0
 --- !u!114 &11426098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -417,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21fd192da9648e4cb6e24850765ff21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_health: 0
   MAX_HEALTH: 100
 --- !u!114 &11448706
 MonoBehaviour:
@@ -456,8 +459,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9410bef31ae534f8061d7e8ed6ff4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_attkRadius: 2
+  m_attkRadius: 4
+  m_attkDamage: 20
   PathToEnd: []
+  pathindex: 0
+  m_isFriendly: 0
+  m_building: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
